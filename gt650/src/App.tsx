@@ -40,7 +40,6 @@ export default function App() {
   const [currentTime, setCurrentTime] = useState('10:24');
   const [distressMode, setDistressMode] = useState(false);
   const [showMapModal, setShowMapModal] = useState(false);
-  const [ignitionOn, setIgnitionOn] = useState(false);
 
   // Initialize motorcycle audio
   const { playHornSound } = useMotorcycleAudio({
@@ -50,8 +49,6 @@ export default function App() {
     rightTurn,
     isBrakePressed,
     isThrottlePressed,
-    startupComplete,
-    ignitionOn,
   });
 
   // Startup animation
@@ -90,9 +87,7 @@ export default function App() {
       switch (e.key) {
         case 'ArrowUp':
           e.preventDefault();
-          if (ignitionOn) {
-            setIsThrottlePressed(true);
-          }
+          setIsThrottlePressed(true);
           break;
         case 'ArrowDown':
           e.preventDefault();
@@ -146,11 +141,6 @@ export default function App() {
           e.preventDefault();
           setShowMapModal(prev => !prev);
           break;
-        case 'i':
-        case 'I':
-          e.preventDefault();
-          setIgnitionOn(prev => !prev);
-          break;
         case '1':
           e.preventDefault();
           setMessageType('nav');
@@ -203,21 +193,10 @@ export default function App() {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [playHornSound, ignitionOn]);
-
-  // Reset speed when ignition is turned off
-  useEffect(() => {
-    if (!ignitionOn) {
-      setSpeed(0);
-      setIsThrottlePressed(false);
-      setIsBrakePressed(false);
-    }
-  }, [ignitionOn]);
+  }, [playHornSound]);
 
   // Realistic speed and gear simulation
   useEffect(() => {
-    if (!ignitionOn) return;
-    
     const interval = setInterval(() => {
       setSpeed(prevSpeed => {
         let newSpeed = prevSpeed;
@@ -243,12 +222,10 @@ export default function App() {
     }, 50); // Update every 50ms for smooth animation
 
     return () => clearInterval(interval);
-  }, [isThrottlePressed, isBrakePressed, gear, ignitionOn]);
+  }, [isThrottlePressed, isBrakePressed, gear]);
 
   // Fuel consumption based on speed and throttle
   useEffect(() => {
-    if (!ignitionOn) return;
-    
     const interval = setInterval(() => {
       if (isThrottlePressed && speed > 0) {
         setFuelLevel(prev => {
@@ -265,7 +242,7 @@ export default function App() {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [isThrottlePressed, speed, ignitionOn]);
+  }, [isThrottlePressed, speed]);
 
   // Automatic gear shifting based on speed
   useEffect(() => {
@@ -405,50 +382,6 @@ export default function App() {
                   }}
                 >
                   {healthStatus === 'ok' ? 'ALL OK' : healthStatus === 'advisory' ? 'CHECK VEHICLE' : 'SERVICE REQUIRED'}
-                </div>
-              </div>
-            </div>
-
-            {/* Ignition Status Indicator - Next to Health Status */}
-            <div
-              className="absolute"
-              style={{
-                top: '70px',
-                left: '50%',
-                transform: 'translateX(calc(-50% + 160px))',
-              }}
-            >
-              <div
-                style={{
-                  backgroundColor: 'rgba(18, 19, 20, 0.85)',
-                  borderRadius: '8px',
-                  border: `1px solid ${ignitionOn ? '#31C48D' : '#E53935'}`,
-                  padding: '8px 12px',
-                  backdropFilter: 'blur(8px)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                }}
-              >
-                <div
-                  style={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    backgroundColor: ignitionOn ? '#31C48D' : '#E53935',
-                    boxShadow: `0 0 8px ${ignitionOn ? '#31C48D' : '#E53935'}`,
-                  }}
-                />
-                <div
-                  style={{
-                    fontSize: '11px',
-                    fontFamily: 'Inter',
-                    fontWeight: '600',
-                    color: ignitionOn ? '#31C48D' : '#E53935',
-                    letterSpacing: '0.5px',
-                  }}
-                >
-                  {ignitionOn ? 'IGNITION ON' : 'IGNITION OFF'}
                 </div>
               </div>
             </div>
@@ -618,26 +551,6 @@ export default function App() {
 
                 {/* Controls grid */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px 24px' }}>
-                  {/* Ignition */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ fontSize: '11px', color: '#8E8E92', fontFamily: 'Inter' }}>
-                      Ignition
-                    </div>
-                    <div
-                      style={{
-                        fontSize: '10px',
-                        fontFamily: 'monospace',
-                        color: ignitionOn ? '#31C48D' : '#E53935',
-                        backgroundColor: 'rgba(42, 44, 46, 0.6)',
-                        padding: '3px 8px',
-                        borderRadius: '4px',
-                        fontWeight: '600',
-                      }}
-                    >
-                      I
-                    </div>
-                  </div>
-
                   {/* Theme */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ fontSize: '11px', color: '#8E8E92', fontFamily: 'Inter' }}>

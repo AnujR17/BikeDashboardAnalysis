@@ -6,10 +6,6 @@
 
   ## Features
 
-  - **Ignition Control**: Press "I" to toggle ignition on/off
-    - Dashboard stays visible but engine sound is disabled when ignition is off
-    - Throttle is disabled when ignition is off
-    - Speed resets to 0 when ignition is turned off
   - **Realistic Engine Sound**: Uses the `videoplayback-[AudioTrimmer.com].m4a` audio file for authentic engine revving
   - **Dynamic Audio**: Sound adjusts based on:
     - Speed and gear (RPM calculation)
@@ -23,22 +19,21 @@
   1. Run `npm i` to install the dependencies.
   2. Run `npm run dev` to start the development server.
   3. Open your browser (the dashboard will automatically load)
-  4. **Important**: Click anywhere or press any key to enable audio (browser autoplay policy)
+  4. **Press Arrow Up** to accelerate and hear the engine sound
 
   ## Audio Implementation
 
   The dashboard uses the sound file located at `/public/sounds/videoplayback-[AudioTrimmer.com].m4a` as the engine sound. The audio system:
 
-  - **Loops** the engine sound continuously
+  - **Plays only when throttle is pressed** (Arrow Up key)
   - **Adjusts playback rate** (0.5x to 2.5x) based on RPM calculated from speed and gear
   - **Modulates volume** based on throttle input and speed
-  - **Plays startup sequence** when dashboard initializes (after user interaction)
-  - **Revs on acceleration** when you press the throttle (Arrow Up key)
+  - **Stops immediately** when throttle is released or speed reaches 0
+  - **No startup sound** - audio only plays during acceleration
 
   ## Controls
 
-  - **I**: Toggle ignition on/off (must be on for engine sound and throttle to work)
-  - **Arrow Up**: Throttle (accelerate) - only works when ignition is on
+  - **Arrow Up**: Throttle (accelerate)
   - **Arrow Down**: Brake
   - **Arrow Left**: Left turn indicator
   - **Arrow Right**: Right turn indicator
@@ -50,19 +45,13 @@
 
   ## How It Works
 
-  ### Ignition System
-  - **Press "I"** to toggle the ignition on/off
-  - When **OFF**: Engine sound stops, throttle is disabled, dashboard remains visible
-  - When **ON**: Engine plays startup rev sequence, throttle becomes responsive
-  - Visual indicators show ignition status (green = ON, red = OFF)
-
-  ### Audio System
   The audio system (`useMotorcycleAudio.ts` hook) handles:
 
-  1. **Startup Rev**: Plays a rev sequence when the dashboard loads (0.8x → 1.5x → 0.7x playback rate)
-  2. **Acceleration**: When throttle is pressed, adds 1500 RPM boost and increases volume
-  3. **Speed-based RPM**: Calculates realistic RPM based on speed and current gear
-  4. **Smooth Transitions**: Gradually fades volume and playback rate when idling down
+  1. **Throttle-Based Playback**: Engine sound only plays when Arrow Up is held down
+  2. **Speed to 0**: Sound stops immediately when speed reaches 0 or throttle is released
+  3. **Acceleration**: When throttle is pressed, adds 1500 RPM boost and increases volume
+  4. **Speed-based RPM**: Calculates realistic RPM based on speed and current gear
+  5. **Immediate Stop**: No fade-out, sound cuts immediately when conditions aren't met
 
   The engine sound file is treated as recorded at ~3500 RPM, and playback rate is adjusted proportionally to simulate different engine speeds.
   

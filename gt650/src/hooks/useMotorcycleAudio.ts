@@ -7,8 +7,6 @@ interface AudioProps {
   rightTurn: boolean;
   isBrakePressed: boolean;
   isThrottlePressed: boolean;
-  startupComplete?: boolean;
-  ignitionOn?: boolean;
 }
 
 export function useMotorcycleAudio({
@@ -18,8 +16,6 @@ export function useMotorcycleAudio({
   rightTurn,
   isBrakePressed,
   isThrottlePressed,
-  startupComplete = true,
-  ignitionOn = false,
 }: AudioProps) {
   const audioContextRef = useRef<AudioContext | null>(null);
   const engineAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -29,7 +25,6 @@ export function useMotorcycleAudio({
   const [audioLoaded, setAudioLoaded] = useState(false);
   const previousSpeedRef = useRef(0);
   const previousGearRef = useRef(1);
-  const startupPlayedRef = useRef(false);
 
   // Audio file paths - Using the provided videoplayback m4a file
   const AUDIO_FILES = {
@@ -87,14 +82,14 @@ export function useMotorcycleAudio({
     };
   }, []);
 
-  // Engine sound with RPM-based playback rate
+  // Engine sound with RPM-based playback rate - only plays on throttle
   useEffect(() => {
     if (!engineAudioRef.current || !audioLoaded) return;
 
     const engineAudio = engineAudioRef.current;
 
-    // Start playing engine on any movement or throttle - only if ignition is on
-    if (ignitionOn && (speed > 0 || isThrottlePressed)) {
+    // Only play engine sound when throttle is pressed
+    if (isThrottlePressed && speed >= 0) {
       // Calculate RPM based on speed and gear
       const gearRatios = [8000, 6500, 5500, 4800, 4200, 3800];
       
@@ -104,13 +99,13 @@ export function useMotorcycleAudio({
       if (speed > 0) {
         // RPM increases with speed relative to gear
         baseRPM = (speed / 180) * gearRatios[gear - 1];
-      } else if (isThrottlePressed) {
+      } else {
         // Rev engine even when stationary (neutral/clutch)
         baseRPM = 3500;
       }
       
       // Apply throttle boost for aggressive acceleration
-      const throttleBoost = isThrottlePressed ? 1500 : 0;
+      const throttleBoost = 1500;
       const rpm = Math.min(10000, Math.max(1000, baseRPM + throttleBoost));
 
       // Map RPM to playback rate
@@ -119,10 +114,9 @@ export function useMotorcycleAudio({
       const playbackRate = Math.max(0.5, Math.min(2.5, rpm / recordedRPM));
 
       // Adjust volume based on throttle and speed
-      const baseVolume = 0.3;
-      const throttleVolume = isThrottlePressed ? 0.65 : baseVolume;
+      const baseVolume = 0.4;
       const speedFactor = Math.min(1, speed / 100);
-      const finalVolume = Math.max(baseVolume, throttleVolume * (0.5 + speedFactor * 0.5));
+      const finalVolume = Math.max(baseVolume, 0.7 * (0.5 + speedFactor * 0.5));
       
       engineAudio.playbackRate = playbackRate;
       engineAudio.volume = finalVolume;
@@ -134,83 +128,13 @@ export function useMotorcycleAudio({
         });
       }
     } else {
-      // Gradually reduce volume and stop when idle or ignition off
-      const currentVolume = engineAudio.volume;
-      if (currentVolume > 0.05) {
-        engineAudio.volume = Math.max(0, currentVolume - 0.03);
-        engineAudio.playbackRate = Math.max(0.5, engineAudio.playbackRate - 0.05);
-      } else {
+      // Stop sound immediately when throttle released or speed is 0
+      if (!engineAudio.paused) {
         engineAudio.pause();
         engineAudio.currentTime = 0;
       }
     }
-  }, [speed, gear, isThrottlePressed, audioLoaded, ignitionOn]);
-
-  // Startup engine rev when dashboard is ready
-  useEffect(() => {
-    if (!engineAudioRef.current || !audioLoaded || !startupComplete || !ignitionOn || startupPlayedRef.current) return;
-    
-    const engineAudio = engineAudioRef.current;
-    
-    // Play startup rev sequence (will only work after user interaction due to browser autoplay policy)
-    const playStartupRev = () => {
-      startupPlayedRef.current = true;
-      
-      engineAudio.volume = 0.5;
-      engineAudio.playbackRate = 0.8;
-      engineAudio.play().catch(err => {
-        console.log('Startup audio play blocked by browser - waiting for user interaction');
-      });
-      
-      // Rev up then settle to idle
-      setTimeout(() => {
-        if (engineAudio) {
-          engineAudio.playbackRate = 1.5; // Rev up
-        }
-      }, 300);
-      
-      setTimeout(() => {
-        if (engineAudio && speed === 0 && !isThrottlePressed) {
-          engineAudio.playbackRate = 0.7; // Back to idle
-          engineAudio.volume = 0.3;
-        }
-      }, 800);
-      
-      setTimeout(() => {
-        if (engineAudio && speed === 0 && !isThrottlePressed) {
-          engineAudio.pause();
-          engineAudio.currentTime = 0;
-        }
-      }, 1500);
-    };
-    
-    // Try to play immediately
-    playStartupRev();
-    
-    // Fallback: play on first user interaction if initial play was blocked
-    const handleFirstInteraction = () => {
-      if (!startupPlayedRef.current) {
-        playStartupRev();
-      }
-      document.removeEventListener('click', handleFirstInteraction);
-      document.removeEventListener('keydown', handleFirstInteraction);
-    };
-    
-    document.addEventListener('click', handleFirstInteraction);
-    document.addEventListener('keydown', handleFirstInteraction);
-    
-    return () => {
-      document.removeEventListener('click', handleFirstInteraction);
-      document.removeEventListener('keydown', handleFirstInteraction);
-    };
-  }, [audioLoaded, startupComplete, ignitionOn]);
-
-  // Reset startup flag when ignition is turned off
-  useEffect(() => {
-    if (!ignitionOn) {
-      startupPlayedRef.current = false;
-    }
-  }, [ignitionOn]);
+  }, [speed, gear, isThrottlePressed, audioLoaded]);
 
   // Exhaust pop on deceleration and downshift
   useEffect(() => {
