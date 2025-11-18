@@ -82,14 +82,14 @@ export function useMotorcycleAudio({
     };
   }, []);
 
-  // Engine sound with RPM-based playback rate - only plays on throttle
+  // Engine sound with RPM-based playback rate - plays while moving
   useEffect(() => {
     if (!engineAudioRef.current || !audioLoaded) return;
 
     const engineAudio = engineAudioRef.current;
 
-    // Only play engine sound when throttle is pressed
-    if (isThrottlePressed && speed >= 0) {
+    // Play engine sound when throttle is pressed OR when still moving (but not braking to stop)
+    if (isThrottlePressed || (speed > 0 && !isBrakePressed)) {
       // Calculate RPM based on speed and gear
       const gearRatios = [8000, 6500, 5500, 4800, 4200, 3800];
       
@@ -99,13 +99,13 @@ export function useMotorcycleAudio({
       if (speed > 0) {
         // RPM increases with speed relative to gear
         baseRPM = (speed / 180) * gearRatios[gear - 1];
-      } else {
+      } else if (isThrottlePressed) {
         // Rev engine even when stationary (neutral/clutch)
         baseRPM = 3500;
       }
       
-      // Apply throttle boost for aggressive acceleration
-      const throttleBoost = 1500;
+      // Apply throttle boost for aggressive acceleration (only when throttle pressed)
+      const throttleBoost = isThrottlePressed ? 1500 : 0;
       const rpm = Math.min(10000, Math.max(1000, baseRPM + throttleBoost));
 
       // Map RPM to playback rate
@@ -116,7 +116,15 @@ export function useMotorcycleAudio({
       // Adjust volume based on throttle and speed
       const baseVolume = 0.4;
       const speedFactor = Math.min(1, speed / 100);
-      const finalVolume = Math.max(baseVolume, 0.7 * (0.5 + speedFactor * 0.5));
+      let finalVolume;
+      
+      if (isThrottlePressed) {
+        // Louder when throttle is pressed
+        finalVolume = Math.max(baseVolume, 0.7 * (0.5 + speedFactor * 0.5));
+      } else {
+        // Quieter when coasting/decelerating
+        finalVolume = Math.max(0.2, baseVolume * (0.3 + speedFactor * 0.7));
+      }
       
       engineAudio.playbackRate = playbackRate;
       engineAudio.volume = finalVolume;
@@ -128,13 +136,19 @@ export function useMotorcycleAudio({
         });
       }
     } else {
-      // Stop sound immediately when throttle released or speed is 0
-      if (!engineAudio.paused) {
+      // Quick fade out when braking to stop or when speed is 0
+      const currentVolume = engineAudio.volume;
+      if (currentVolume > 0.05) {
+        // Faster fade when braking at low speed
+        const fadeRate = (isBrakePressed && speed < 10) ? 0.15 : 0.08;
+        engineAudio.volume = Math.max(0, currentVolume - fadeRate);
+        engineAudio.playbackRate = Math.max(0.5, engineAudio.playbackRate - 0.12);
+      } else {
         engineAudio.pause();
         engineAudio.currentTime = 0;
       }
     }
-  }, [speed, gear, isThrottlePressed, audioLoaded]);
+  }, [speed, gear, isThrottlePressed, isBrakePressed, audioLoaded]);
 
   // Exhaust pop on deceleration and downshift
   useEffect(() => {

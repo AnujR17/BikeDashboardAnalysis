@@ -25,11 +25,11 @@
 
   The dashboard uses the sound file located at `/public/sounds/videoplayback-[AudioTrimmer.com].m4a` as the engine sound. The audio system:
 
-  - **Plays only when throttle is pressed** (Arrow Up key)
+  - **Plays when throttle is pressed** (Arrow Up key) or **while the bike is moving**
   - **Adjusts playback rate** (0.5x to 2.5x) based on RPM calculated from speed and gear
   - **Modulates volume** based on throttle input and speed
-  - **Stops immediately** when throttle is released or speed reaches 0
-  - **No startup sound** - audio only plays during acceleration
+  - **Gradually fades out** as speed decreases to 0 (realistic engine deceleration)
+  - **Continues playing after releasing throttle** until speed reaches 0
 
   ## Controls
 
@@ -47,11 +47,11 @@
 
   The audio system (`useMotorcycleAudio.ts` hook) handles:
 
-  1. **Throttle-Based Playback**: Engine sound only plays when Arrow Up is held down
-  2. **Speed to 0**: Sound stops immediately when speed reaches 0 or throttle is released
-  3. **Acceleration**: When throttle is pressed, adds 1500 RPM boost and increases volume
+  1. **Throttle Activation**: Engine sound starts when Arrow Up is pressed
+  2. **Continues While Moving**: Sound continues playing as long as speed > 0, even after releasing throttle
+  3. **Gradual Deceleration**: Sound gradually fades out as speed decreases to 0
   4. **Speed-based RPM**: Calculates realistic RPM based on speed and current gear
-  5. **Immediate Stop**: No fade-out, sound cuts immediately when conditions aren't met
+  5. **Volume Modulation**: Louder when accelerating, quieter when coasting
 
   The engine sound file is treated as recorded at ~3500 RPM, and playback rate is adjusted proportionally to simulate different engine speeds.
   
