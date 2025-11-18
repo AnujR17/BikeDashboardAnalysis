@@ -8,6 +8,7 @@ interface AudioProps {
   isBrakePressed: boolean;
   isThrottlePressed: boolean;
   startupComplete?: boolean;
+  ignitionOn?: boolean;
 }
 
 export function useMotorcycleAudio({
@@ -18,6 +19,7 @@ export function useMotorcycleAudio({
   isBrakePressed,
   isThrottlePressed,
   startupComplete = true,
+  ignitionOn = false,
 }: AudioProps) {
   const audioContextRef = useRef<AudioContext | null>(null);
   const engineAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -91,8 +93,8 @@ export function useMotorcycleAudio({
 
     const engineAudio = engineAudioRef.current;
 
-    // Start playing engine on any movement or throttle
-    if (speed > 0 || isThrottlePressed) {
+    // Start playing engine on any movement or throttle - only if ignition is on
+    if (ignitionOn && (speed > 0 || isThrottlePressed)) {
       // Calculate RPM based on speed and gear
       const gearRatios = [8000, 6500, 5500, 4800, 4200, 3800];
       
@@ -132,7 +134,7 @@ export function useMotorcycleAudio({
         });
       }
     } else {
-      // Gradually reduce volume and stop when idle
+      // Gradually reduce volume and stop when idle or ignition off
       const currentVolume = engineAudio.volume;
       if (currentVolume > 0.05) {
         engineAudio.volume = Math.max(0, currentVolume - 0.03);
@@ -142,11 +144,11 @@ export function useMotorcycleAudio({
         engineAudio.currentTime = 0;
       }
     }
-  }, [speed, gear, isThrottlePressed, audioLoaded]);
+  }, [speed, gear, isThrottlePressed, audioLoaded, ignitionOn]);
 
   // Startup engine rev when dashboard is ready
   useEffect(() => {
-    if (!engineAudioRef.current || !audioLoaded || !startupComplete || startupPlayedRef.current) return;
+    if (!engineAudioRef.current || !audioLoaded || !startupComplete || !ignitionOn || startupPlayedRef.current) return;
     
     const engineAudio = engineAudioRef.current;
     
@@ -201,7 +203,14 @@ export function useMotorcycleAudio({
       document.removeEventListener('click', handleFirstInteraction);
       document.removeEventListener('keydown', handleFirstInteraction);
     };
-  }, [audioLoaded, startupComplete]);
+  }, [audioLoaded, startupComplete, ignitionOn]);
+
+  // Reset startup flag when ignition is turned off
+  useEffect(() => {
+    if (!ignitionOn) {
+      startupPlayedRef.current = false;
+    }
+  }, [ignitionOn]);
 
   // Exhaust pop on deceleration and downshift
   useEffect(() => {

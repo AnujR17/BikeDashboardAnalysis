@@ -6,6 +6,10 @@
 
   ## Features
 
+  - **Ignition Control**: Press "I" to toggle ignition on/off
+    - Dashboard stays visible but engine sound is disabled when ignition is off
+    - Throttle is disabled when ignition is off
+    - Speed resets to 0 when ignition is turned off
   - **Realistic Engine Sound**: Uses the `videoplayback-[AudioTrimmer.com].m4a` audio file for authentic engine revving
   - **Dynamic Audio**: Sound adjusts based on:
     - Speed and gear (RPM calculation)
@@ -33,7 +37,8 @@
 
   ## Controls
 
-  - **Arrow Up**: Throttle (accelerate)
+  - **I**: Toggle ignition on/off (must be on for engine sound and throttle to work)
+  - **Arrow Up**: Throttle (accelerate) - only works when ignition is on
   - **Arrow Down**: Brake
   - **Arrow Left**: Left turn indicator
   - **Arrow Right**: Right turn indicator
@@ -45,6 +50,13 @@
 
   ## How It Works
 
+  ### Ignition System
+  - **Press "I"** to toggle the ignition on/off
+  - When **OFF**: Engine sound stops, throttle is disabled, dashboard remains visible
+  - When **ON**: Engine plays startup rev sequence, throttle becomes responsive
+  - Visual indicators show ignition status (green = ON, red = OFF)
+
+  ### Audio System
   The audio system (`useMotorcycleAudio.ts` hook) handles:
 
   1. **Startup Rev**: Plays a rev sequence when the dashboard loads (0.8x → 1.5x → 0.7x playback rate)
