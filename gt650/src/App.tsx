@@ -315,7 +315,7 @@ export default function App() {
               transition={{ duration: 1.2 }}
               className="absolute inset-0 flex items-center justify-center z-50"
             >
-              <div style={{ fontSize: '24px', color: '#F4EDE1', fontFamily: 'Inter' }}>
+              <div style={{ fontSize: '24px', color: '#F4EDE1', fontFamily: "'Rajdhani', sans-serif", fontWeight: '600', letterSpacing: '0.1em' }}>
                 Good Morning, Kabir.
               </div>
             </motion.div>
@@ -335,7 +335,7 @@ export default function App() {
                 fontWeight: '700',
                 color: '#8E8E92',
                 opacity: 0.6,
-                fontFamily: 'Inter',
+                fontFamily: "'Rajdhani', sans-serif",
                 letterSpacing: '3px',
               }}
             >
@@ -375,7 +375,7 @@ export default function App() {
                 <div
                   style={{
                     fontSize: '11px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '600',
                     color: healthStatus === 'ok' ? '#31C48D' : healthStatus === 'advisory' ? '#FFB000' : '#E53935',
                     letterSpacing: '0.5px',
@@ -538,7 +538,7 @@ export default function App() {
                 <div
                   style={{
                     fontSize: '11px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '600',
                     color: '#8E8E92',
                     marginBottom: '12px',
@@ -553,18 +553,19 @@ export default function App() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px 24px' }}>
                   {/* Theme */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ fontSize: '11px', color: '#8E8E92', fontFamily: 'Inter' }}>
+                    <div style={{ fontSize: '11px', color: '#8E8E92', fontFamily: "'Rajdhani', sans-serif", fontWeight: '600', letterSpacing: '0.05em' }}>
                       Theme
                     </div>
                     <div
                       style={{
                         fontSize: '10px',
-                        fontFamily: 'monospace',
+                        fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
                         color: theme === 'classic-amber' ? '#FFC15A' : theme === 'ivory-mono' ? '#F4EDE1' : '#3EA0E6',
                         backgroundColor: 'rgba(42, 44, 46, 0.6)',
                         padding: '3px 8px',
                         borderRadius: '4px',
-                        fontWeight: '600',
+                        fontWeight: '700',
+                        letterSpacing: '0.02em',
                       }}
                     >
                       T
@@ -573,18 +574,19 @@ export default function App() {
 
                   {/* High Beam */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ fontSize: '11px', color: '#8E8E92', fontFamily: 'Inter' }}>
+                    <div style={{ fontSize: '11px', color: '#8E8E92', fontFamily: "'Rajdhani', sans-serif", fontWeight: '600', letterSpacing: '0.05em' }}>
                       High Beam
                     </div>
                     <div
                       style={{
                         fontSize: '10px',
-                        fontFamily: 'monospace',
+                        fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
                         color: highBeam ? '#4EA8DE' : '#8E8E92',
                         backgroundColor: 'rgba(42, 44, 46, 0.6)',
                         padding: '3px 8px',
                         borderRadius: '4px',
-                        fontWeight: '600',
+                        fontWeight: '700',
+                        letterSpacing: '0.02em',
                       }}
                     >
                       H
@@ -593,18 +595,19 @@ export default function App() {
 
                   {/* Neutral */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ fontSize: '11px', color: '#8E8E92', fontFamily: 'Inter' }}>
+                    <div style={{ fontSize: '11px', color: '#8E8E92', fontFamily: "'Rajdhani', sans-serif", fontWeight: '600', letterSpacing: '0.05em' }}>
                       Neutral
                     </div>
                     <div
                       style={{
                         fontSize: '10px',
-                        fontFamily: 'monospace',
+                        fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
                         color: neutral ? '#31C48D' : '#8E8E92',
                         backgroundColor: 'rgba(42, 44, 46, 0.6)',
                         padding: '3px 8px',
                         borderRadius: '4px',
-                        fontWeight: '600',
+                        fontWeight: '700',
+                        letterSpacing: '0.02em',
                       }}
                     >
                       N

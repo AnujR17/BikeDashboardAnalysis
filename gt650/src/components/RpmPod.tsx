@@ -282,7 +282,7 @@ export function RpmPod({
             textAnchor="middle"
             fill="#8E8E92"
             fontSize="10"
-            fontFamily="Inter"
+            fontFamily="'Rajdhani', sans-serif"
             fontWeight="600"
           >
             ⛽
@@ -421,7 +421,7 @@ export function RpmPod({
                 </motion.div>
                 <div style={{
                   fontSize: '8px',
-                  fontFamily: 'Inter',
+                  fontFamily: "'Rajdhani', sans-serif",
                   fontWeight: '600',
                   color: bluetooth ? '#31C48D' : '#8E8E92',
                   opacity: bluetooth ? 1 : 0.4,
@@ -444,7 +444,7 @@ export function RpmPod({
                 </motion.div>
                 <div style={{
                   fontSize: '8px',
-                  fontFamily: 'Inter',
+                  fontFamily: "'Rajdhani', sans-serif",
                   fontWeight: '600',
                   color: gps ? '#31C48D' : '#8E8E92',
                   opacity: gps ? 1 : 0.4,
@@ -462,10 +462,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '72px',
-                    fontFamily: 'Inter',
-                    fontWeight: '700',
+                    fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                    fontWeight: '800',
                     color: range < 20 ? '#E53935' : range < 40 ? '#FFB000' : textColor,
                     lineHeight: 1,
+                    letterSpacing: '0.02em',
                     textShadow: range < 20 ? '0 4px 16px rgba(229, 57, 53, 0.4)' : '0 2px 8px rgba(0, 0, 0, 0.3)',
                   }}
                 >
@@ -474,10 +475,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '24px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '600',
                     color: '#8E8E92',
                     marginBottom: '8px',
+                    letterSpacing: '0.05em',
                   }}
                 >
                   km
@@ -485,7 +487,7 @@ export function RpmPod({
               </div>
               <div style={{
                 fontSize: '9px',
-                fontFamily: 'Inter',
+                fontFamily: "'Rajdhani', sans-serif",
                 fontWeight: '600',
                 color: '#8E8E92',
                 letterSpacing: '2px',
@@ -513,7 +515,7 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '600',
                     color: '#8E8E92',
                     letterSpacing: '1.5px',
@@ -524,10 +526,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '28px',
-                    fontFamily: 'Inter',
-                    fontWeight: '700',
+                    fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                    fontWeight: '800',
                     color: textColor,
                     lineHeight: 1,
+                    letterSpacing: '0.02em',
                   }}
                 >
                   {Math.round(tripDistance)}
@@ -535,10 +538,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '9px',
-                    fontFamily: 'Inter',
-                    fontWeight: '500',
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontWeight: '600',
                     color: '#8E8E92',
                     opacity: 0.5,
+                    letterSpacing: '0.05em',
                   }}
                 >
                   km
@@ -561,7 +565,7 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '600',
                     color: '#8E8E92',
                     letterSpacing: '1.5px',
@@ -572,10 +576,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '28px',
-                    fontFamily: 'Inter',
-                    fontWeight: '700',
+                    fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                    fontWeight: '800',
                     color: engineTemp > 95 ? '#E53935' : textColor,
                     lineHeight: 1,
+                    letterSpacing: '0.02em',
                   }}
                 >
                   {engineTemp}°
@@ -583,8 +588,8 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '9px',
-                    fontFamily: 'Inter',
-                    fontWeight: '500',
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontWeight: '600',
                     color: '#8E8E92',
                     opacity: 0.5,
                   }}
@@ -609,7 +614,7 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '600',
                     color: '#8E8E92',
                     letterSpacing: '1.5px',
@@ -620,10 +625,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '22px',
-                    fontFamily: 'Inter',
-                    fontWeight: '700',
+                    fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                    fontWeight: '800',
                     color: textColor,
                     lineHeight: 1,
+                    letterSpacing: '0.02em',
                   }}
                 >
                   {currentTime}
@@ -631,10 +637,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '9px',
-                    fontFamily: 'Inter',
-                    fontWeight: '500',
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontWeight: '600',
                     color: '#8E8E92',
                     opacity: 0.5,
+                    letterSpacing: '0.05em',
                   }}
                 >
                   local
@@ -675,10 +682,10 @@ export function RpmPod({
               <div
                 style={{
                   fontSize: '11px',
-                  fontFamily: 'Inter',
+                  fontFamily: "'Rajdhani', sans-serif",
                   fontWeight: '600',
                   color: healthStatus === 'ok' ? '#31C48D' : healthStatus === 'advisory' ? '#FFB000' : '#E53935',
-                  letterSpacing: '0.5px',
+                  letterSpacing: '0.05em',
                 }}
               >
                 {healthStatus === 'ok' ? 'ALL OK' : healthStatus === 'advisory' ? 'CHECK TPMS' : 'SERVICE DUE'}
@@ -719,10 +726,10 @@ export function RpmPod({
               <div
                 style={{
                   fontSize: '16px',
-                  fontFamily: 'Inter',
+                  fontFamily: "'Rajdhani', sans-serif",
                   fontWeight: '700',
                   color: themeColors[theme],
-                  letterSpacing: '2px',
+                  letterSpacing: '0.1em',
                 }}
               >
                 SETTINGS
@@ -745,10 +752,10 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '13px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '600',
                     color: '#F4EDE1',
-                    letterSpacing: '0.5px',
+                    letterSpacing: '0.05em',
                   }}
                 >
                   Display Theme
@@ -756,12 +763,13 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '13px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '700',
                     color: themeColors[theme],
                     padding: '4px 12px',
                     backgroundColor: `${themeColors[theme]}20`,
                     borderRadius: '6px',
+                    letterSpacing: '0.05em',
                   }}
                 >
                   {theme === 'classic-amber' ? 'Amber' : theme === 'ivory-mono' ? 'Ivory' : 'Indigo'}
@@ -779,9 +787,10 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '13px',
-                    fontFamily: 'Inter',
-                    fontWeight: '500',
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontWeight: '600',
                     color: '#F4EDE1',
+                    letterSpacing: '0.05em',
                   }}
                 >
                   Units
@@ -789,9 +798,10 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '13px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '600',
                     color: '#8E8E92',
+                    letterSpacing: '0.05em',
                   }}
                 >
                   Metric
@@ -809,9 +819,10 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '13px',
-                    fontFamily: 'Inter',
-                    fontWeight: '500',
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontWeight: '600',
                     color: '#F4EDE1',
+                    letterSpacing: '0.05em',
                   }}
                 >
                   Next Service
@@ -829,9 +840,10 @@ export function RpmPod({
                   <div
                     style={{
                       fontSize: '13px',
-                      fontFamily: 'Inter',
-                      fontWeight: '600',
+                      fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                      fontWeight: '800',
                       color: '#31C48D',
+                      letterSpacing: '0.02em',
                     }}
                   >
                     1200 km
@@ -845,9 +857,10 @@ export function RpmPod({
                   <div
                     style={{
                       fontSize: '13px',
-                      fontFamily: 'Inter',
-                      fontWeight: '500',
+                      fontFamily: "'Rajdhani', sans-serif",
+                      fontWeight: '600',
                       color: '#F4EDE1',
+                      letterSpacing: '0.05em',
                     }}
                   >
                     Brightness
@@ -855,9 +868,10 @@ export function RpmPod({
                   <div
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'Inter',
-                      fontWeight: '600',
+                      fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                      fontWeight: '800',
                       color: '#8E8E92',
+                      letterSpacing: '0.02em',
                     }}
                   >
                     70%
@@ -932,12 +946,12 @@ export function RpmPod({
             <div
               style={{
                 fontSize: '18px',
-                fontFamily: 'Inter',
+                fontFamily: "'Rajdhani', sans-serif",
                 fontWeight: '700',
                 color: '#E53935',
                 marginBottom: '6px',
                 marginTop: '36px',
-                letterSpacing: '2.5px',
+                letterSpacing: '0.1em',
                 textShadow: '0 2px 12px rgba(229, 57, 53, 0.4)',
               }}
             >
@@ -960,10 +974,10 @@ export function RpmPod({
               <div
                 style={{
                   fontSize: '10px',
-                  fontFamily: 'Inter',
+                  fontFamily: "'Rajdhani', sans-serif",
                   fontWeight: '600',
                   color: '#FFB000',
-                  letterSpacing: '0.5px',
+                  letterSpacing: '0.05em',
                 }}
               >
                 Signal sent to emergency contacts
@@ -990,10 +1004,10 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '8px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '700',
                     color: '#31C48D',
-                    letterSpacing: '1.5px',
+                    letterSpacing: '0.1em',
                     marginBottom: '3px',
                   }}
                 >
@@ -1017,10 +1031,10 @@ export function RpmPod({
             <div className="flex flex-col gap-2" style={{ width: '100%', maxWidth: '260px' }}>
               <div style={{
                 fontSize: '8px',
-                fontFamily: 'Inter',
+                fontFamily: "'Rajdhani', sans-serif",
                 fontWeight: '700',
                 color: '#8E8E92',
-                letterSpacing: '1.5px',
+                letterSpacing: '0.1em',
                 marginBottom: '2px',
                 paddingLeft: '4px',
               }}>
@@ -1125,10 +1139,10 @@ export function RpmPod({
               <div
                 style={{
                   fontSize: '16px',
-                  fontFamily: 'Inter',
+                  fontFamily: "'Rajdhani', sans-serif",
                   fontWeight: '700',
                   color: themeColors[theme],
-                  letterSpacing: '2px',
+                  letterSpacing: '0.1em',
                 }}
               >
                 NAVIGATION
@@ -1160,10 +1174,10 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '7px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '700',
                     color: '#31C48D',
-                    letterSpacing: '1.2px',
+                    letterSpacing: '0.1em',
                     marginBottom: '3px',
                   }}
                 >
@@ -1183,10 +1197,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '9px',
-                    fontFamily: 'Inter',
-                    fontWeight: '500',
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontWeight: '600',
                     color: '#8E8E92',
                     marginTop: '2px',
+                    letterSpacing: '0.05em',
                   }}
                 >
                   Bangalore, Karnataka
@@ -1215,10 +1230,10 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '600',
                     color: '#8E8E92',
-                    letterSpacing: '1.5px',
+                    letterSpacing: '0.1em',
                   }}
                 >
                   DISTANCE
@@ -1226,10 +1241,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '28px',
-                    fontFamily: 'Inter',
-                    fontWeight: '700',
+                    fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                    fontWeight: '800',
                     color: textColor,
                     lineHeight: 1,
+                    letterSpacing: '0.02em',
                   }}
                 >
                   42
@@ -1237,10 +1253,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '9px',
-                    fontFamily: 'Inter',
-                    fontWeight: '500',
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontWeight: '600',
                     color: '#8E8E92',
                     opacity: 0.5,
+                    letterSpacing: '0.05em',
                   }}
                 >
                   km
@@ -1266,10 +1283,10 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '600',
                     color: '#8E8E92',
-                    letterSpacing: '1.5px',
+                    letterSpacing: '0.1em',
                   }}
                 >
                   ETA
@@ -1277,10 +1294,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '22px',
-                    fontFamily: 'Inter',
-                    fontWeight: '700',
+                    fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                    fontWeight: '800',
                     color: textColor,
                     lineHeight: 1,
+                    letterSpacing: '0.02em',
                   }}
                 >
                   11:38
@@ -1288,10 +1306,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '9px',
-                    fontFamily: 'Inter',
-                    fontWeight: '500',
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontWeight: '600',
                     color: '#8E8E92',
                     opacity: 0.5,
+                    letterSpacing: '0.05em',
                   }}
                 >
                   local
@@ -1317,10 +1336,10 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '600',
                     color: '#8E8E92',
-                    letterSpacing: '1.5px',
+                    letterSpacing: '0.1em',
                   }}
                 >
                   LIMIT
@@ -1328,10 +1347,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '28px',
-                    fontFamily: 'Inter',
-                    fontWeight: '700',
+                    fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                    fontWeight: '800',
                     color: '#E53935',
                     lineHeight: 1,
+                    letterSpacing: '0.02em',
                   }}
                 >
                   60
@@ -1339,10 +1359,11 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '9px',
-                    fontFamily: 'Inter',
-                    fontWeight: '500',
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontWeight: '600',
                     color: '#8E8E92',
                     opacity: 0.5,
+                    letterSpacing: '0.05em',
                   }}
                 >
                   km/h
@@ -1381,13 +1402,14 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '11px',
-                    fontFamily: 'Inter',
+                    fontFamily: "'Rajdhani', sans-serif",
                     fontWeight: '700',
                     color: textColor,
                     marginBottom: '2px',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
+                    letterSpacing: '0.05em',
                   }}
                 >
                   Turn right in 800m
@@ -1395,12 +1417,13 @@ export function RpmPod({
                 <div
                   style={{
                     fontSize: '9px',
-                    fontFamily: 'Inter',
-                    fontWeight: '500',
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontWeight: '600',
                     color: '#8E8E92',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
+                    letterSpacing: '0.05em',
                   }}
                 >
                   onto MG Road

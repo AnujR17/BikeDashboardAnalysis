@@ -70,10 +70,10 @@ export function MessageStrip({ type, theme, mode }: MessageStripProps) {
         className="flex-1"
         style={{
           fontSize: mode === 'focus' ? '20px' : '16px',
-          fontFamily: 'Inter',
-          fontWeight: type === 'critical' || type === 'advisory' ? '600' : '500',
+          fontFamily: "'Rajdhani', sans-serif",
+          fontWeight: '600',
           color: content.color,
-          letterSpacing: '0.01em',
+          letterSpacing: '0.05em',
         }}
       >
         {content.text}

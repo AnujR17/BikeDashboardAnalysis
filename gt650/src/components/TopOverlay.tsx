@@ -41,9 +41,10 @@ export function TopOverlay({ bluetooth, gps, theme }: TopOverlayProps) {
         <div
           style={{
             fontSize: '10px',
-            fontFamily: 'Inter',
-            fontWeight: '600',
+            fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+            fontWeight: '700',
             color: '#F4EDE1',
+            letterSpacing: '0.02em',
           }}
         >
           A

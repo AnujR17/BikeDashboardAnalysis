@@ -40,9 +40,10 @@ export function SettingsModal({ isOpen, onClose, theme, onThemeChange }: Setting
           <div
             style={{
               fontSize: '24px',
-              fontFamily: 'Inter',
+              fontFamily: "'Rajdhani', sans-serif",
               fontWeight: '700',
               color: '#F4EDE1',
+              letterSpacing: '0.1em',
             }}
           >
             Settings
@@ -71,11 +72,11 @@ export function SettingsModal({ isOpen, onClose, theme, onThemeChange }: Setting
         <div
           style={{
             fontSize: '14px',
-            fontFamily: 'Inter',
+            fontFamily: "'Rajdhani', sans-serif",
             fontWeight: '600',
             color: '#8E8E92',
             marginBottom: '12px',
-            letterSpacing: '0.5px',
+            letterSpacing: '0.15em',
           }}
         >
           THEME
@@ -100,9 +101,10 @@ export function SettingsModal({ isOpen, onClose, theme, onThemeChange }: Setting
             <div
               style={{
                 fontSize: '14px',
-                fontFamily: 'Inter',
+                fontFamily: "'Rajdhani', sans-serif",
                 fontWeight: '600',
                 color: theme === 'classic-amber' ? '#FFC15A' : '#8E8E92',
+                letterSpacing: '0.05em',
               }}
             >
               Classic Amber
@@ -127,9 +129,10 @@ export function SettingsModal({ isOpen, onClose, theme, onThemeChange }: Setting
             <div
               style={{
                 fontSize: '14px',
-                fontFamily: 'Inter',
+                fontFamily: "'Rajdhani', sans-serif",
                 fontWeight: '600',
                 color: theme === 'ivory-mono' ? '#F4EDE1' : '#8E8E92',
+                letterSpacing: '0.05em',
               }}
             >
               Ivory Mono
@@ -154,9 +157,10 @@ export function SettingsModal({ isOpen, onClose, theme, onThemeChange }: Setting
             <div
               style={{
                 fontSize: '14px',
-                fontFamily: 'Inter',
+                fontFamily: "'Rajdhani', sans-serif",
                 fontWeight: '600',
                 color: theme === 'night-indigo' ? '#3EA0E6' : '#8E8E92',
+                letterSpacing: '0.05em',
               }}
             >
               Night Indigo
@@ -170,11 +174,11 @@ export function SettingsModal({ isOpen, onClose, theme, onThemeChange }: Setting
         <div
           style={{
             fontSize: '14px',
-            fontFamily: 'Inter',
+            fontFamily: "'Rajdhani', sans-serif",
             fontWeight: '600',
             color: '#8E8E92',
             marginBottom: '12px',
-            letterSpacing: '0.5px',
+            letterSpacing: '0.15em',
           }}
         >
           QUICK SETTINGS
@@ -195,9 +199,10 @@ export function SettingsModal({ isOpen, onClose, theme, onThemeChange }: Setting
               <div
                 style={{
                   fontSize: '16px',
-                  fontFamily: 'Inter',
-                  fontWeight: '500',
+                  fontFamily: "'Rajdhani', sans-serif",
+                  fontWeight: '600',
                   color: '#F4EDE1',
+                  letterSpacing: '0.05em',
                 }}
               >
                 Bluetooth
@@ -206,9 +211,10 @@ export function SettingsModal({ isOpen, onClose, theme, onThemeChange }: Setting
             <div
               style={{
                 fontSize: '14px',
-                fontFamily: 'Inter',
-                fontWeight: '500',
+                fontFamily: "'Rajdhani', sans-serif",
+                fontWeight: '600',
                 color: '#31C48D',
+                letterSpacing: '0.05em',
               }}
             >
               Connected
@@ -229,9 +235,10 @@ export function SettingsModal({ isOpen, onClose, theme, onThemeChange }: Setting
               <div
                 style={{
                   fontSize: '16px',
-                  fontFamily: 'Inter',
-                  fontWeight: '500',
+                  fontFamily: "'Rajdhani', sans-serif",
+                  fontWeight: '600',
                   color: '#F4EDE1',
+                  letterSpacing: '0.05em',
                 }}
               >
                 Volume
@@ -240,9 +247,10 @@ export function SettingsModal({ isOpen, onClose, theme, onThemeChange }: Setting
             <div
               style={{
                 fontSize: '14px',
-                fontFamily: 'Inter',
-                fontWeight: '500',
+                fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                fontWeight: '700',
                 color: '#8E8E92',
+                letterSpacing: '0.02em',
               }}
             >
               75%
@@ -258,13 +266,14 @@ export function SettingsModal({ isOpen, onClose, theme, onThemeChange }: Setting
           backgroundColor: 'rgba(42, 44, 46, 0.3)',
           borderRadius: '8px',
           fontSize: '12px',
-          fontFamily: 'Inter',
-          fontWeight: '500',
+          fontFamily: "'Rajdhani', sans-serif",
+          fontWeight: '600',
           color: '#8E8E92',
           textAlign: 'center',
+          letterSpacing: '0.05em',
         }}
       >
-        Press <span style={{ color: '#F4EDE1' }}>M</span> to close • Press <span style={{ color: '#F4EDE1' }}>C</span> to toggle connectivity
+        Press <span style={{ color: '#F4EDE1', fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif", fontWeight: '700' }}>M</span> to close • Press <span style={{ color: '#F4EDE1', fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif", fontWeight: '700' }}>C</span> to toggle connectivity
       </div>
     </motion.div>
   );

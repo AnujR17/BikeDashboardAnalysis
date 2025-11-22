@@ -159,8 +159,9 @@ export function RightPod({
             dominantBaseline="middle"
             fill="#8E8E92"
             fontSize="14"
-            fontFamily="Inter"
-            fontWeight="500"
+            fontFamily="'Rajdhani', sans-serif"
+            fontWeight="600"
+            letterSpacing="0.15em"
           >
             FUEL
           </text>
@@ -174,8 +175,9 @@ export function RightPod({
           dominantBaseline="middle"
           fill="#8E8E92"
           fontSize="14"
-          fontFamily="Inter"
-          fontWeight="500"
+          fontFamily="'Rajdhani', sans-serif"
+          fontWeight="600"
+          letterSpacing="0.1em"
         >
           E
         </text>
@@ -186,8 +188,9 @@ export function RightPod({
           dominantBaseline="middle"
           fill="#8E8E92"
           fontSize="14"
-          fontFamily="Inter"
-          fontWeight="500"
+          fontFamily="'Rajdhani', sans-serif"
+          fontWeight="600"
+          letterSpacing="0.1em"
         >
           F
         </text>
@@ -207,11 +210,12 @@ export function RightPod({
         <div
           style={{
             fontSize: '72px',
-            fontFamily: 'Inter',
-            fontWeight: '700',
+            fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+            fontWeight: '800',
             color: textColor,
             lineHeight: 1,
             marginBottom: '16px',
+            letterSpacing: '0.02em',
           }}
         >
           {gear}
@@ -222,10 +226,11 @@ export function RightPod({
           <div
             style={{
               fontSize: '48px',
-              fontFamily: 'Inter',
-              fontWeight: '700',
+              fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+              fontWeight: '800',
               color: textColor,
               lineHeight: 1,
+              letterSpacing: '0.02em',
             }}
           >
             {range}
@@ -233,9 +238,10 @@ export function RightPod({
           <div
             style={{
               fontSize: '20px',
-              fontFamily: 'Inter',
-              fontWeight: '500',
+              fontFamily: "'Rajdhani', sans-serif",
+              fontWeight: '600',
               color: '#8E8E92',
+              letterSpacing: '0.1em',
             }}
           >
             km
@@ -257,9 +263,10 @@ export function RightPod({
               <div
                 style={{
                   fontSize: '12px',
-                  fontFamily: 'Inter',
-                  fontWeight: '500',
+                  fontFamily: "'Rajdhani', sans-serif",
+                  fontWeight: '600',
                   color: '#8E8E92',
+                  letterSpacing: '0.15em',
                 }}
               >
                 TRIP
@@ -267,9 +274,10 @@ export function RightPod({
               <div
                 style={{
                   fontSize: '16px',
-                  fontFamily: 'Inter',
-                  fontWeight: '600',
+                  fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                  fontWeight: '700',
                   color: textColor,
+                  letterSpacing: '0.02em',
                 }}
               >
                 {tripDistance}
@@ -288,9 +296,10 @@ export function RightPod({
               <div
                 style={{
                   fontSize: '12px',
-                  fontFamily: 'Inter',
-                  fontWeight: '500',
+                  fontFamily: "'Rajdhani', sans-serif",
+                  fontWeight: '600',
                   color: '#8E8E92',
+                  letterSpacing: '0.15em',
                 }}
               >
                 TEMP
@@ -298,9 +307,10 @@ export function RightPod({
               <div
                 style={{
                   fontSize: '16px',
-                  fontFamily: 'Inter',
-                  fontWeight: '600',
+                  fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                  fontWeight: '700',
                   color: textColor,
+                  letterSpacing: '0.02em',
                 }}
               >
                 {engineTemp}°
@@ -319,9 +329,10 @@ export function RightPod({
               <div
                 style={{
                   fontSize: '12px',
-                  fontFamily: 'Inter',
-                  fontWeight: '500',
+                  fontFamily: "'Rajdhani', sans-serif",
+                  fontWeight: '600',
                   color: '#8E8E92',
+                  letterSpacing: '0.15em',
                 }}
               >
                 TIME
@@ -329,9 +340,10 @@ export function RightPod({
               <div
                 style={{
                   fontSize: '16px',
-                  fontFamily: 'Inter',
-                  fontWeight: '600',
+                  fontFamily: "'Barlow', 'DIN Alternate', 'DIN 1451', sans-serif",
+                  fontWeight: '700',
                   color: textColor,
+                  letterSpacing: '0.02em',
                 }}
               >
                 {currentTime}
